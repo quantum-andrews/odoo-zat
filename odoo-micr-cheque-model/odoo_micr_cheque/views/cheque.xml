@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="cheque_form" model="ir.ui.view" >
+        <field name="name">cheque.form</field>
+        <field name="model">cheque</field>
+        <field name="arch" type="xml">
+            <form>
+            <header>
+<!--DRAFT-->
+                    <button name="draft_to_confirmed"
+                            invisible="state not in ('draft')"
+                            class="oe_highlight"
+                            string="Confirm"
+                            type="object"
+                    />
+
+<!--CONFIRMED-->
+                    <button name="confirmed_to_applied"
+                            invisible="state not in('confirmed')"
+                            class="oe_highlight"
+                            string="Apply"
+                            type="object"
+                    />
+
+                    <button name="reverse_confirm_to_draft"
+                            invisible="state not in('confirmed', 'applied','cancelled')"
+                            class="oe_highlight"
+                            string="Reset to Draft"
+                            type="object"
+
+                    />
+<!--APPLIED-->
+                    <button name="applied_to_cancelled"
+                            invisible="state not in ('applied')"
+                            class="oe_highlight"
+                            string="Cancel"
+                            type="object"
+
+                    />
+
+
+                    <field name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,confirmed,applied,cancelled"
+                        options="{'clickable': '1', 'fold_field': 'fold'}"
+                    />
+            </header>
+                <sheet>
+                    <group>
+                        <field
+                                name = 'cheque_image'
+                                widget = 'image'
+                                class = 'oe_image_cheque'
+                        />
+                    </group>
+                    <group>
+                        <field name = 'cheque_number'
+                               readonly = "state not in('draft')"
+                        />
+
+                        <field name = 'debit_account'
+                               readonly = "state not in('draft')"
+                        />
+                        <field name = 'credit_check_null'
+                               readonly = "state not in('draft')"
+                        />
+
+                        <field name = 'debit_account_amount'
+                               readonly = "state not in('draft')"
+                        />
+
+                        <field name = 'credit_account'
+                               readonly = "state not in('draft')"
+                        />
+                        <field name = 'debit_check_null'
+                               readonly = "state not in('draft')"
+                        />
+                        <field name = 'credit_account_amount'
+                               readonly = "state not in('draft')"
+                        />
+
+                        <field name = 'issuing_bank'
+                               readonly = "state not in('draft')"
+                        />
+                        <field name = 'issuing_bank_branch'
+                               readonly = "state not in('draft')"
+                        />
+                        <field name = 'currency'
+                               readonly = "state not in('draft')"
+                        />
+                        <field name = 'amount'
+                               readonly = "state not in('draft')"
+                        />
+                        <field name = 'date'
+                               readonly = "state not in('draft')"
+                        />
+                        <field name = 'presented_by'
+                               readonly = "state not in('draft')"
+                        />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+
+    <record id="cheque_tree" model="ir.ui.view" >
+        <field name="name">cheque.tree</field>
+        <field name="model">cheque</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name = 'date'/>
+                <field name="issuing_bank"/>
+                <field name="issuing_bank_branch"/>
+                <field name="currency"/>
+                <field name="amount" sum="Total"/>
+                <field name="presented_by"/>
+            </tree>
+        </field>
+    </record>
+
+
+<!--ACTIONS-->
+    <record id="action_micr_cheque_menu" model="ir.actions.act_window">
+        <field name="name">MICR Cheque</field>
+        <field name="res_model">cheque</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+<!--BANK-->
+    <record id="action_bank_details_menu" model="ir.actions.act_window">
+        <field name="name">Bank Details</field>
+        <field name="res_model">bank</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_bank_branch_details_menu" model="ir.actions.act_window">
+        <field name="name">Bank Branch Details</field>
+        <field name="res_model">bank.branch</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+<!--ACCOUNT/TRANSACTION DETAILS-->
+    <record id="action_account_details_menu" model="ir.actions.act_window">
+        <field name="name">Account Details</field>
+        <field name="res_model">account.details</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+        <record id="action_transaction_logs_menu" model="ir.actions.act_window">
+        <field name="name">Transaction Logs</field>
+        <field name="res_model">transactions</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+
+
+
+<!--MICR MENU ITEMS-->
+    <menuitem
+            name="MICR Cheque"
+            id="cheque_root_menu"
+            sequence="10"
+            web_icon ="odoo_micr_cheque,static/description/cheque_image_icon.png"
+    />
+
+    <menuitem
+            name="MICR Cheque Details"
+            id="cheque_root_menu_1"
+            parent="cheque_root_menu"
+            action ="action_micr_cheque_menu"
+            sequence="10"
+    />
+
+<!--BANK DETAILS ITEMS-->
+    <menuitem
+            name="Financial Details"
+            id="cheque_root_menu_2"
+            parent="cheque_root_menu"
+            sequence="10"
+    />
+
+
+    <menuitem
+            name="Bank Details"
+            id="cheque_root_menu_2a"
+            parent="cheque_root_menu_2"
+            action ="action_bank_details_menu"
+            sequence="10"
+    />
+
+    <menuitem
+            name="Bank Branch Details"
+            id="cheque_root_menu_2b"
+            parent="cheque_root_menu_2"
+            action ="action_bank_branch_details_menu"
+            sequence="10"
+    />
+
+
+<!-- ACCOUNT/TRANSACTION DETAILS -->
+    <menuitem
+            name="Account and Transaction Details"
+            id="cheque_root_menu_3"
+            parent="cheque_root_menu"
+            sequence="10"
+    />
+
+        <menuitem
+            name="Account Details"
+            id="cheque_root_menu_3a"
+            parent="cheque_root_menu_3"
+            action="action_account_details_menu"
+            sequence="10"
+    />
+
+        <menuitem
+            name="Transaction Logs"
+            id="cheque_root_menu_3b"
+            parent="cheque_root_menu_3"
+            action="action_transaction_logs_menu"
+            sequence="10"
+    />
+
+</odoo>

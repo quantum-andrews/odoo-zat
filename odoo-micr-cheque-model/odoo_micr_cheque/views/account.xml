@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="account_details_form" model="ir.ui.view" >
+        <field name="name">account.details.form</field>
+        <field name="model">account.details</field>
+        <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name ="date_of_creation" />
+                            <field name ="customer_name" />
+                            <field name ="account_number" />
+                            <field name ="account_bank" />
+                            <field name ="account_bank_branch" />
+                            <field name ="debit_account_final" />
+                            <field name ="debit_account_amount_final" />
+                            <field name ="credit_account_final" />
+                            <field name ="credit_account_amount_final" />
+                            <field name ="amount"/>
+                        </group>
+                    </sheet>
+                </form>
+        </field>
+    </record>
+
+
+    <record id="account_details_tree" model="ir.ui.view" >
+        <field name="name">account.details.tree</field>
+        <field name="model">account.details</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="date_of_creation"/>
+                <field name="customer_name"/>
+                <field name="account_number"/>
+                <field name="account_bank"/>
+                <field name="account_bank_branch"/>
+                <field name ="debit_account_final" />
+                <field name ="debit_account_amount_final" />
+                <field name ="credit_account_final" />
+                <field name ="credit_account_amount_final" />
+
+                <field name ="amount" />
+            </tree>
+        </field>
+    </record>
+</odoo>

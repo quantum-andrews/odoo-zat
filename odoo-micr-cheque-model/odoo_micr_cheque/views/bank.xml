@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="bank_form" model="ir.ui.view" >
+        <field name="name">bank.form</field>
+        <field name="model">bank</field>
+        <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name ="bank_name" />
+                            <field name ="abbreviation" />
+                            <field name ="code" />
+                            <field name ="country" />
+                        </group>
+                    </sheet>
+                </form>
+        </field>
+    </record>
+
+    <record id="bank_tree" model="ir.ui.view" >
+        <field name="name">bank.tree</field>
+        <field name="model">bank</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="bank_name"/>
+                <field name="abbreviation"/>
+                <field name="code"/>
+                <field name="country"/>
+            </tree>
+        </field>
+    </record>
+
+
+
+<!-- BANK BRANCH-->
+    <record id="bank_branch_form" model="ir.ui.view" >
+        <field name="name">bank.branch.form</field>
+        <field name="model">bank.branch</field>
+        <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name ="bank_name_branch" />
+                            <field name ="bank_branch" />
+                        </group>
+                    </sheet>
+                </form>
+        </field>
+    </record>
+
+    <record id="bank_branch_tree" model="ir.ui.view" >
+        <field name="name">bank.branch.tree</field>
+        <field name="model">bank.branch</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="bank_name_branch"/>
+                <field name="bank_branch"/>
+            </tree>
+        </field>
+    </record>
+
+</odoo>

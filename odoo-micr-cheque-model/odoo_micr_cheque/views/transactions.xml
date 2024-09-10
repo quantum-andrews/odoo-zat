@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="transactions_tree" model="ir.ui.view" >
+        <field name="name">transactions.tree</field>
+        <field name="model">transactions</field>
+        <field name="arch" type="xml">
+            <tree create="false" delete="false" edit="false">
+                <field name="date_of_transaction" />
+                <field name="customer_of_account"/>
+                <field name="deducted_account_number"/>
+                <field name="beneficiary_account_number"/>
+                <field name="account_bank"/>
+                <field name="account_bank_branch"/>
+                <field name="amount_involved"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

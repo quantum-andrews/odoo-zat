@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+odoo_micr_cheque.access_cheque,access_cheque,odoo_micr_cheque.model_cheque,base.group_user,1,1,1,1
+odoo_micr_cheque.access_bank,access_bank,odoo_micr_cheque.model_bank,base.group_user,1,1,1,1
+odoo_micr_cheque.access_bank_branch,access_bank_branch,odoo_micr_cheque.model_bank_branch,base.group_user,1,1,1,1
+odoo_micr_cheque.access_account_details,access_account_details,odoo_micr_cheque.model_account_details,base.group_user,1,1,1,1
+odoo_micr_cheque.access_transactions,access_account_transactions,odoo_micr_cheque.model_transactions,base.group_user,1,1,1,1
+
